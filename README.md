@@ -20,3 +20,10 @@ These will be added to a schedule which can then be requested by the user to see
 schedule of flights they have. The application will guide users through what information they should input to help
 ensure the users do not forget important information that they will need for their flights. I hope to expand the scope
 of the project throughout the term to include other possible features.
+
+## User Stories
+
+- As a user I want to be able to add a new flight to a list of flights
+- As a user I want to be able to view my current list of flights
+- As a user I want to be able to remove a flight from the list of flights
+- As a user I want to be able to select a flight and see the flight date
