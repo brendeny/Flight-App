@@ -6,7 +6,6 @@ import java.util.LinkedList;
 public class FlightList {
 
     private LinkedList<Flight> flightList;
-    private Flight f1;
 
     //EFFECTS: initialize new flight list
     public FlightList() {
@@ -17,7 +16,7 @@ public class FlightList {
     //MODIFIES: this
     //EFFECTS: adds a new flight to the current list
     public Boolean addFlight(Flight f1) {
-        if(flightList.contains(f1)) {
+        if (flightList.contains(f1)) {
             return false;
         }
         flightList.add(f1);
@@ -27,8 +26,20 @@ public class FlightList {
     //REQUIRES: the removal to be a Flight
     //MODIFIES: this
     //EFFECTS: removes a flight from the current list
-    public void removeFlight(Flight f1) {
-        flightList.remove(f1);
+    public void removeFlight(Flight f2) {
+        flightList.remove(f2);
+    }
+
+    //EFFECTS; searches for a flight using a flight name and removes that flight from the list
+    public String searchRemoveFlight(String fs1) {
+        String removeMessage = "Could not remove flight as this flight is not on your current schedule.";
+        for (Flight x2 : flightList) {
+            if (x2.getFlightName() == fs1) {
+                removeFlight(x2);
+                removeMessage = "Successfully removed " + fs1;
+            }
+        }
+        return removeMessage;
     }
 
     //EFFECTS: tells how many flights are currently in the list

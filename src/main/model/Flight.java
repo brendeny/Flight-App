@@ -4,6 +4,7 @@ public class Flight {
     private String flightName;
     private String flightDate;
     private String departureTime;
+    private Flight f1;
     private boolean departed;
 
     //EFFECTS: Flight has given name
@@ -29,9 +30,21 @@ public class Flight {
         return flightDate;
     }
 
-    //EFFECTS: returns true if the plane has departed
-    public boolean isDeparted() {
-        return departed;
+    //EFFECTS: sets flight name
+    public void setFlightName(String flightName1) {
+        this.flightName = flightName1;
     }
+
+    //EFFECTS: sets flight departure
+    public void setDepartureTime(String departureTime1) {
+        this.departureTime = departureTime1;
+    }
+
+    //EFFECTS: sets flight date
+    public void setFlightDate(String flightDate1) {
+        this.flightDate = flightDate1;
+    }
+
+
 
 }

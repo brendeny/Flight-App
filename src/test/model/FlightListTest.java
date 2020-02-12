@@ -109,4 +109,17 @@ public class FlightListTest {
         currentFlights.removeFlight(f1);
         assertEquals("This flight is not on your current schedule.", currentFlights.flightTime("AC100"));
     }
+
+    @Test
+    public void testSearchRemove() {
+        currentFlights.addFlight(f1);
+        currentFlights.addFlight(f2);
+        assertEquals("Could not remove flight as this flight is not on your current schedule.", currentFlights.searchRemoveFlight("AC110"));
+        assertEquals("Successfully removed AC100", currentFlights.searchRemoveFlight("AC100"));
+        currentFlights.addFlight(f1);
+        assertEquals("Successfully removed AC100", currentFlights.searchRemoveFlight("AC100"));
+        assertEquals("Could not remove flight as this flight is not on your current schedule.", currentFlights.searchRemoveFlight("AC100"));
+    }
+
 }
+;
