@@ -31,6 +31,24 @@ public class FlightListTest {
     }
 
     @Test
+    public void testRemoveFirstFlight() {
+        currentFlights.addFlight(f1);
+        assertEquals(1, currentFlights.listSize());
+        currentFlights.addFlight(f1);
+        assertEquals(1, currentFlights.listSize());
+        currentFlights.removeFirstFlight();
+        assertEquals(0, currentFlights.listSize());
+        currentFlights.addFlight(f1);
+        assertEquals(1, currentFlights.listSize());
+        currentFlights.addFlight(f2);
+        assertEquals(2, currentFlights.listSize());
+        currentFlights.addFlight(f3);
+        assertEquals(3, currentFlights.listSize());
+        currentFlights.removeFirstFlight();
+        assertEquals(2, currentFlights.listSize());
+    }
+
+    @Test
     public void testRemoveFlight() {
         currentFlights.addFlight(f1);
         assertEquals(1, currentFlights.listSize());
@@ -58,6 +76,16 @@ public class FlightListTest {
         currentFlights.addFlight(f2);
         currentFlights.addFlight(f3);
         assertEquals(3, currentFlights.listSize());
+    }
+
+    @Test
+    public void testGetFirst() {
+        currentFlights.addFlight(f1);
+        currentFlights.addFlight(f2);
+        currentFlights.addFlight(f3);
+        assertEquals(f1, currentFlights.showFirst());
+        currentFlights.removeFirstFlight();
+        assertEquals(f2, currentFlights.showFirst());
     }
 
     @Test
@@ -121,5 +149,11 @@ public class FlightListTest {
         assertEquals("Could not remove flight as this flight is not on your current schedule.", currentFlights.searchRemoveFlight("AC100"));
     }
 
+    @Test
+    public void testIsEmpty() {
+        assertTrue(currentFlights.isEmpty());
+        currentFlights.addFlight(f1);
+        assertFalse(currentFlights.isEmpty());
+    }
+
 }
-;

@@ -3,10 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+//Represents a LinkedList of Flights that is a schedule of flights for users
 public class FlightList {
 
     private LinkedList<Flight> flightList;
 
+    //MODIFIES: this
     //EFFECTS: initialize new flight list
     public FlightList() {
         flightList = new LinkedList<>();
@@ -23,6 +25,12 @@ public class FlightList {
         return true;
     }
 
+    //MODIFIES: this
+    //EFFECTS: removes the first flight from the current list
+    public void removeFirstFlight() {
+        flightList.removeFirst();
+    }
+
     //REQUIRES: the removal to be a Flight
     //MODIFIES: this
     //EFFECTS: removes a flight from the current list
@@ -30,6 +38,7 @@ public class FlightList {
         flightList.remove(f2);
     }
 
+    //MODIFIES: this
     //EFFECTS; searches for a flight using a flight name and removes that flight from the list
     public String searchRemoveFlight(String fs1) {
         String removeMessage = "Could not remove flight as this flight is not on your current schedule.";
@@ -47,6 +56,12 @@ public class FlightList {
         return flightList.size();
     }
 
+    //EFFECTS: shows first flight in the list
+    public Flight showFirst() {
+        return flightList.getFirst();
+    }
+
+    //MODIFIES: this
     //EFFECTS: tells the date of a certain flight given the flight name
     public String flightDate(String s1) {
         String dateOfFlight = "This flight is not on your current schedule.";
@@ -55,9 +70,10 @@ public class FlightList {
                 dateOfFlight = fx.getFlightDate();
             }
         }
-       return dateOfFlight;
+        return dateOfFlight;
     }
 
+    //MODIFIES: this
     //EFFECTS: tells the time of a certain flight given the flight name
     public String flightTime(String s2) {
         String timeOfFlight = "This flight is not on your current schedule.";
@@ -69,6 +85,14 @@ public class FlightList {
         return timeOfFlight;
     }
 
+    //MODIFIES: this
+    //EFFECTS: determines if the current schedule is empty
+    public Boolean isEmpty() {
+        if (0 != flightList.size()) {
+            return false;
+        }
+        return true;
+    }
 
 
 }

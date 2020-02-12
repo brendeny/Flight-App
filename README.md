@@ -24,6 +24,6 @@ of the project throughout the term to include other possible features.
 ## User Stories
 
 - As a user I want to be able to add a new flight to a list of flights
-- As a user I want to be able to view number of flights currently on my schedule
-- As a user I want to be able to remove a flight from the list of flights
-- As a user I want to be able to select a flight and see the flight date and departure time
+- As a user I want to be able to view the number of flights currently on my schedule
+- As a user I want to be able to remove the first flight from my flight schedule
+- As a user I want to be able to view the first flight on my current schedule

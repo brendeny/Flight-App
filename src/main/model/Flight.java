@@ -1,5 +1,6 @@
 package model;
 
+//Represents a flight with a name, date, and departure time
 public class Flight {
     private String flightName;
     private String flightDate;
@@ -7,6 +8,7 @@ public class Flight {
     private Flight f1;
     private boolean departed;
 
+    //MODIFIES: this
     //EFFECTS: Flight has given name
     public Flight(String flightName, String flightDate, String departureTime) {
         this.flightName = flightName;
@@ -30,16 +32,22 @@ public class Flight {
         return flightDate;
     }
 
+    //REQUIRES: no spaces in the string
+    //MODIFIES: this
     //EFFECTS: sets flight name
     public void setFlightName(String flightName1) {
         this.flightName = flightName1;
     }
 
+    //REQUIRES: no spaces in the string
+    //MODIFIES: this
     //EFFECTS: sets flight departure
     public void setDepartureTime(String departureTime1) {
         this.departureTime = departureTime1;
     }
 
+    //REQUIRES: no spaces in the string
+    //MODIFIES: this
     //EFFECTS: sets flight date
     public void setFlightDate(String flightDate1) {
         this.flightDate = flightDate1;
