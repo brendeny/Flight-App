@@ -1,7 +1,13 @@
 package model;
 
+import persistence.*;
+import model.*;
+
+import java.io.PrintWriter;
+import java.util.LinkedList;
+
 //Represents a flight with a name, date, and departure time
-public class Flight {
+public class Flight implements Saveable {
     private String flightName;
     private String flightDate;
     private String departureTime;
@@ -54,5 +60,14 @@ public class Flight {
     }
 
 
+    //EFFECTS: writes a flight to a line in the text file
+    @Override
+    public void save(PrintWriter printWriter) {
+        printWriter.print(flightName);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(flightDate);
+        printWriter.print(Reader.DELIMITER);
+        printWriter.print(departureTime);
+    }
 
 }

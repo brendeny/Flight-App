@@ -2,13 +2,22 @@ package ui;
 
 import model.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+import persistence.*;
 
 // Flight Schedule application
 public class FlightApp {
+    public static final String FLIGHTS_FILE = "./data/flights.txt";
     private Scanner input;
     private Flight newFlight1;
     private FlightList currentFlightSchedule;
+    private FlightList tempFlightSchedule;
 
     //EFFECTS: runs the flight application
     public FlightApp() {
@@ -55,6 +64,12 @@ public class FlightApp {
             doShowFirstFlight();
         } else if (command.equals("d")) {
             doHowManyFlights();
+        } else if (command.equals("n")) {
+            clearList();
+        } else if (command.equals("s")) {
+            saveFlights();
+        } else if (command.equals("l")) {
+            loadFlights();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -70,6 +85,9 @@ public class FlightApp {
         System.out.println("\tb -> remove the first flight on your schedule");
         System.out.println("\tc -> see the first flight on your schedule");
         System.out.println("\td -> see how many flights on your current schedule");
+        System.out.println("\tn -> clear your current flight schedule and start a new one");
+        System.out.println("\ts -> save your current flight schedule");
+        System.out.println("\tl -> load your current flight schedule");
         System.out.println("\tq -> quit");
     }
 
@@ -129,6 +147,56 @@ public class FlightApp {
         System.out.println(currentFlightSchedule.listSize());
         promptEnterKey();
     }
+
+    // MODIFIES: this
+    // EFFECTS: clears current Flight List
+    private void clearList() {
+        currentFlightSchedule = new FlightList();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes Flight List
+    private void init() {
+        currentFlightSchedule = new FlightList();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: saves the current list of flights to FLIGHTS_FILE
+    private void saveFlights() {
+        try {
+            Writer writer = new Writer(new File(FLIGHTS_FILE));
+            for (int i = 0; i < currentFlightSchedule.listSize(); i++) {
+                writer.write(currentFlightSchedule.getFlight(i));
+            }
+            writer.close();
+            System.out.println("Current flight schedule saved to file " + FLIGHTS_FILE);
+            promptEnterKey();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save current flight schedule to " + FLIGHTS_FILE);
+            promptEnterKey();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            // this is due to a programming error
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads flights from FLIGHTS_FILE, if that file exists;
+    // otherwise initializes new flight schedule with default values
+    private void loadFlights() {
+        try {
+            List<Flight> flights = Reader.readFlights(new File(FLIGHTS_FILE));
+            init();
+            for (int i = 0; i < flights.size(); i++) {
+                currentFlightSchedule.addFlight(flights.get(i));
+            }
+            System.out.println("Successfully loaded your last saved flight schedule!");
+            promptEnterKey();
+        } catch (IOException e) {
+            init();
+        }
+    }
+
 
     //EFFECTS: pauses and waits for user to press enter
     //REFERENCE: https://stackoverflow.com/questions/26184409/java-console-prompt-for-enter-input-before-moving-on

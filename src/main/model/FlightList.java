@@ -1,6 +1,10 @@
 package model;
 
-import java.util.ArrayList;
+import persistence.*;
+import model.*;
+
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 
 //Represents a LinkedList of Flights that is a schedule of flights for users
@@ -36,6 +40,11 @@ public class FlightList {
     //EFFECTS: removes a flight from the current list
     public void removeFlight(Flight f2) {
         flightList.remove(f2);
+    }
+
+    //EFFECTS: gets a flight of index i
+    public Flight getFlight(int i) {
+        return flightList.get(i);
     }
 
     //MODIFIES: this
@@ -93,6 +102,7 @@ public class FlightList {
         }
         return true;
     }
+
 
 
 }

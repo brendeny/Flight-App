@@ -31,4 +31,4 @@ Phase 1
 
 Phase 2
 - As a user, I want to be able to save my current flight schedule to file from the main menu
-- As a user, I want to be able to load my flight schedule from the main menu
+- As a user, I want to be able to load my last saved flight schedule from the main menu
