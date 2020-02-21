@@ -156,4 +156,13 @@ public class FlightListTest {
         assertFalse(currentFlights.isEmpty());
     }
 
+    @Test
+    public void testGetFlight() {
+        assertTrue(currentFlights.isEmpty());
+        currentFlights.addFlight(f1);
+        assertEquals(f1, currentFlights.getFlight(0));
+        currentFlights.addFlight(f2);
+        assertEquals(f2, currentFlights.getFlight(1));
+    }
+
 }
