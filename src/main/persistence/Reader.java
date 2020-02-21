@@ -12,6 +12,8 @@ import java.util.List;
 
 // A reader that can read Flight data from a file
 public class Reader {
+
+    private static Reader simpleReader = new Reader();
     public static final String DELIMITER = ",";
 
     // EFFECTS: returns a list of Flights parsed from file; throws
