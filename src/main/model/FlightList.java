@@ -52,13 +52,24 @@ public class FlightList {
     public String searchRemoveFlight(String fs1) {
         String removeMessage = "Could not remove flight as this flight is not on your current schedule.";
         for (Flight x2 : flightList) {
-            if (x2.getFlightName() == fs1) {
+            if (x2.getFlightName().equals(fs1)) {
                 removeFlight(x2);
                 removeMessage = "Successfully removed " + fs1;
             }
         }
         return removeMessage;
     }
+
+/*    //MODIFIES: this
+    //EFFECTS; searches for a flight using a flight name and removes that flight from the list
+    public void searchRemoveFlight(String fs1) {
+        for (Flight x2 : flightList) {
+            if (x2.getFlightName().equals(fs1)) {
+                removeFlight(x2);
+            }
+        }
+    }*/
+
 
     //EFFECTS: tells how many flights are currently in the list
     public int listSize() {
