@@ -14,8 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+//represents the Alert Boxes for the GUI
 public class AlertBox {
 
+    // MODIFIES: this
+    // EFFECTS: this sets a display window with a given title and message
     public static void display(String title, String message) {
         Stage window = new Stage();
 
@@ -25,8 +28,9 @@ public class AlertBox {
 
         Label label = new Label();
         label.setText(message);
-        Button closeButton = new Button("Close the window");
+        Button closeButton = new Button("_Close the window");
         closeButton.setOnAction(e -> window.close());
+        closeButton.setMnemonicParsing(true);
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label, closeButton);
@@ -38,6 +42,8 @@ public class AlertBox {
         window.showAndWait();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets a display window with a title and a given message in multiple lines using a textarea
     public static void multiDisplay(String title, String message) {
         Stage window = new Stage();
 
@@ -47,8 +53,9 @@ public class AlertBox {
 
         TextArea textArea = new TextArea();
         textArea.setText(message);
-        Button closeButton = new Button("Close the window");
+        Button closeButton = new Button("_Close the window");
         closeButton.setOnAction(e -> window.close());
+        closeButton.setMnemonicParsing(true);
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(textArea, closeButton);
