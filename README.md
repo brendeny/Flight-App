@@ -16,7 +16,7 @@ Users will be able to add/do the following:
 - see first flight
 - remove first flight
 
-These will be added to a schedule which can then be requested by the user to see the chronological order of the
+These will be added to a schedule which can then be requested by the user to see the order of the
 schedule of flights they have. The application will guide users through what information they should input to help
 ensure the users do not forget important information that they will need for their flights. I hope to expand the scope
 of the project throughout the term to include other possible features.
