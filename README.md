@@ -5,16 +5,16 @@
 In my personal project, I plan to design a **flight schedule** application that allows users to store and organize 
 upcoming flights that they have. This will be used by travelers for both personal and business related flights. 
 
-Users will be able to add the following:
+Users will be able to add/do the following:
 
 - flight dates
 - flight times
 - flight numbers
-- gate numbers
-- departure and arrival airport
-- boarding times
-- takeoff times
-- landing times
+- flight names
+- add flights
+- remove flights
+- see first flight
+- remove first flight
 
 These will be added to a schedule which can then be requested by the user to see the chronological order of the
 schedule of flights they have. The application will guide users through what information they should input to help
