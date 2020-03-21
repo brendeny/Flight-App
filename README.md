@@ -32,3 +32,24 @@ Phase 1
 Phase 2
 - As a user, I want to be able to save my current flight schedule to file from the main menu
 - As a user, I want to be able to load my last saved flight schedule from the main menu
+
+Phase 3 Instructions for Grader
+
+- On EDX it asks to say how many points we are expecting based on the grading key. I am expecting to receive full marks
+(100 pts) as I believe I have fulfilled the requirements outlined and have justified this below.
+- You can generate the first required event by first clicking the "1. Show Flight List" button to get to the flight
+schedule display screen ("Panel that displays Xs that have been added to the Y"). Then you can enter the flight 
+information as required then click (click-event type, first event-type) the "Add" button which will add the 
+"Flight (X)" to the "FlightList (Y)" and also to the table. You can additionally press alt+a (keyboard-event type, 
+second event-type) to use a mnemonic shortcut to add the flight.
+- You can generate the second required event by first clicking the "1. Show Flight List" button to get to the flight
+  schedule display screen. Then you can then select the flight you want to remove by clicking it to highlight it, then 
+  clicking (click-event type, first event-type) the "Remove" button which will remove the "Flight (X)" from the 
+  "FlightList (Y)" and table. You can additionally press alt+r (keyboard-event type, second event-type) to use a 
+  mnemonic shortcut to add the flight.
+- You can locate my visual component in the main application menu by seeing the plane logo. You can also trigger my 
+audio component by clicking the plane logo image which will play a plane sound.
+- You can save the state of my application by clicking the "Save Flight List" button in the main menu, or by pressing
+alt+S to use the mnemonic shortcut in the main menu
+- You can reload the state of my application by clicking the "Load Last Flight List" button in the main menu or by
+pressing alt+L to use the mnemonic shortcut in the main menu

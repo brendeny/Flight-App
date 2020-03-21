@@ -14,6 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +24,8 @@ import model.FlightList;
 import persistence.Reader;
 import persistence.Writer;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
@@ -78,6 +82,7 @@ public class FlightAppGUI extends Application {
 
     // MODIFIES: this
     // EFFECTS: main GUI method, creates the stage for the application and shows the main application window
+    // REFERENCE: https://www.youtube.com/playlist?list=PLfu_Bpi_zcDNYL6171Op3S1ABtuyFV7Nr
     @Override
     public void start(Stage stage) throws FileNotFoundException {
         setStageHelperStart(stage);
@@ -110,6 +115,7 @@ public class FlightAppGUI extends Application {
 
     // MODIFIES: this
     // EFFECTS: initializes main menu buttons, sets their actions, and calls the mnemonic helper
+    // REFERENCE: https://youtu.be/3vAT-FpiJKw
     public void buttonMakerHelper() {
         viewFlightListButton = new Button("_1. Show Flight List");
         addSingleFlightButton = new Button("_2. Add New Flight");
@@ -134,6 +140,7 @@ public class FlightAppGUI extends Application {
 
     // MODIFIES: this
     // EFFECTS: sets the mnemonic parsing to be true for main menu buttons
+    // REFERENCE: https://youtu.be/3vAT-FpiJKw
     public void buttonMnemonicHelper() {
         viewFlightListButton.setMnemonicParsing(true);
         addSingleFlightButton.setMnemonicParsing(true);
@@ -160,6 +167,7 @@ public class FlightAppGUI extends Application {
 
     // MODIFIES: this
     // EFFECTS: creates an image and assigns it to a button and plays a media sound when button is pressed
+    // REFERENCE: http://tutorials.jenkov.com/javafx/imageview.html
     public void imageInsertHelper(BorderPane b) throws FileNotFoundException {
         //load the image
         //Source: https://www.flaticon.com/free-icon/plane_1983892?term=airplane&page=3&position=96
@@ -173,13 +181,14 @@ public class FlightAppGUI extends Application {
         iv1.setSmooth(true);
         iv1.setCache(true);
 
-        //Media sound = new Media(new File("src/main/ui/media/airstrike.wav").toURI().toString());
-        //MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        // SOURCE: https://www.freesoundeffects.com/free-sounds/airplane-10004/
+        String soundPath = "/ui/media/airstrike.wav";
+        AudioClip sound = Applet.newAudioClip(getClass().getResource(soundPath));
 
         imagePlane = new Button();
         imagePlane.setGraphic(iv1);
-        //imagePlane.setOnAction(e ->
-        //        mediaPlayer.play());
+        imagePlane.setOnAction(e ->
+                sound.play());
     }
 
     // EFFECTS: formats the save and load buttons
@@ -395,6 +404,7 @@ public class FlightAppGUI extends Application {
     // MODIFIES: this
     // EFFECTS: creates the table window where the flight schedule will be shown to users
     //          has an add and remove button for modification of the schedule
+    // REFERENCE: https://youtu.be/sYga9AxY72M
     public void tableWindow(String title) {
         Stage window = new Stage();
         window.initModality((Modality.APPLICATION_MODAL));
@@ -507,6 +517,7 @@ public class FlightAppGUI extends Application {
 
     // MODIFIES: this
     // EFFECTS: implementation for the add button in the table, adds flight if all info is typed out
+    // REFERENCE: https://youtu.be/uz2sWCnTq6E
     public void addFlightButtonClicked() {
         if (flightNameInput.getText().equals("")
                 || flightDateInput.getText().equals("")
@@ -527,6 +538,7 @@ public class FlightAppGUI extends Application {
 
     // MODIFIES: this
     // EFFECTS: implementation of the remove button in the table, removes the flights that are selected in the table
+    // REFERENCE: https://youtu.be/uz2sWCnTq6E
     public void removeFlightButtonClicked() {
         ObservableList<Flight> flightSelected;
         ObservableList<Flight> allFlights;

@@ -19,6 +19,7 @@ public class AlertBox {
 
     // MODIFIES: this
     // EFFECTS: this sets a display window with a given title and message
+    // REFERENCE: https://youtu.be/SpL3EToqaXA
     public static void display(String title, String message) {
         Stage window = new Stage();
 
@@ -44,6 +45,7 @@ public class AlertBox {
 
     // MODIFIES: this
     // EFFECTS: sets a display window with a title and a given message in multiple lines using a textarea
+    // REFERENCE: https://youtu.be/SpL3EToqaXA
     public static void multiDisplay(String title, String message) {
         Stage window = new Stage();
 
