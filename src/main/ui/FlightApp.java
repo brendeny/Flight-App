@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.DateFormat;
+import exceptions.DepartureTimeFormat;
 import model.*;
 
 import java.io.File;
@@ -94,22 +96,28 @@ public class FlightApp {
     //MODIFIES: this
     //EFFECTS: adds a flight to the flight schedule
     private void doAddFlight() {
-        newFlight1 = new Flight(null, null, null);
-        System.out.println("\nPlease enter the flight name/number you would like to add:");
-        newFlight1.setFlightName(input.next());
-        System.out.println("\nPlease enter that flights date (mm/dd/yy):");
-        newFlight1.setFlightDate(input.next());
-        System.out.println("\nPlease enter that flights departure time (24 hour format - xx:xx):");
-        newFlight1.setDepartureTime(input.next());
-        if (currentFlightSchedule.addFlight(newFlight1)) {
-            System.out.println("\nSuccessfully added the flight! Here are your flight details:");
-            System.out.println("Flight name/number: " + newFlight1.getFlightName());
-            System.out.println("Flight date: " + newFlight1.getFlightDate());
-            System.out.println("Flight departure time: " + newFlight1.getDepartureTime());
-        } else {
-            System.out.println("\nUnsuccessful. This flight already exists in your schedule.");
+        try {
+            newFlight1 = new Flight(null, null, null);
+            System.out.println("\nPlease enter the flight name/number you would like to add:");
+            newFlight1.setFlightName(input.next());
+            System.out.println("\nPlease enter that flights date (mm/dd/yy):");
+            newFlight1.setFlightDate(input.next());
+            System.out.println("\nPlease enter that flights departure time (24 hour format - xx:xx):");
+            newFlight1.setDepartureTime(input.next());
+            if (currentFlightSchedule.addFlight(newFlight1)) {
+                System.out.println("\nSuccessfully added the flight! Here are your flight details:");
+                System.out.println("Flight name/number: " + newFlight1.getFlightName());
+                System.out.println("Flight date: " + newFlight1.getFlightDate());
+                System.out.println("Flight departure time: " + newFlight1.getDepartureTime());
+            } else {
+                System.out.println("\nUnsuccessful. This flight already exists in your schedule.");
+            }
+            promptEnterKey();
+        } catch (DateFormat e) {
+            //
+        } catch (DepartureTimeFormat e2) {
+            //
         }
-        promptEnterKey();
     }
 
     //MODIFIES: this

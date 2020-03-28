@@ -53,3 +53,14 @@ audio component by clicking the plane logo image which will play a plane sound.
 alt+S to use the mnemonic shortcut in the main menu
 - You can reload the state of my application by clicking the "Load Last Flight List" button in the main menu or by
 pressing alt+L to use the mnemonic shortcut in the main menu
+
+Phase 4: Task 2
+
+- I have chosen the option "Test and design a class that is robust." for Task 2
+- The class which is robust is the "Flight" class with the following two methods: setDepartureTime() and setFlightDate()
+- These methods throw DateFormat Exception (checked) and DepartureTimeFormat Exception (checked) respectively
+- To test these robust methods, please see the "FlightTest" class with the following 4 tests that test where the 
+DateFormat exception is expected/not expected and where the DepartureTimeformat is expected/not expected: 
+testSetFlightDateCorrect(), testSetFlightDateWrong(), testSetDepartureTimeCorrect(), testSetDepartureTimeIncorrect()
+- You can also find an additional try/catch clause in the "FlightAppGUI" class under the ui package, the applicable
+method is named clickAddFlight()

@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.DateFormat;
+import exceptions.DepartureTimeFormat;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +31,8 @@ import java.applet.AudioClip;
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // represents the GUI for the flight app
 public class FlightAppGUI extends Application {
@@ -69,6 +73,9 @@ public class FlightAppGUI extends Application {
     Label flightNameLabel;
     Label flightDateLabel;
     Label flightTimeLabel;
+
+    boolean correctDateFormat;
+    boolean correctDepartureTimeFormat;
 
 
     // MODIFIES: this
@@ -372,7 +379,7 @@ public class FlightAppGUI extends Application {
         //flightDate
         GridPane.setConstraints(flightDate, 0, 1);
         GridPane.setConstraints(inputDate, 1, 1);
-        inputDate.setPromptText("mm/dd/yy");
+        inputDate.setPromptText("mm/dd/yyyy");
 
         //flightTime
         GridPane.setConstraints(flightTime, 0, 2);
@@ -383,12 +390,18 @@ public class FlightAppGUI extends Application {
     // MODIFIES: this
     // EFFECTS: implementation for the add flight button
     public void clickAddFlight(String flightName, String flightDate, String flightTime) {
-        newFlight1 = new Flight(null, null, null);
-        newFlight1.setFlightName(flightName);
-        newFlight1.setFlightDate(flightDate);
-        newFlight1.setDepartureTime(flightTime);
-        currentFlightSchedule.addFlight(newFlight1);
-        AlertBox.display("Added Flight", "Success! The flight has been added to your schedule.");
+        try {
+            newFlight1 = new Flight(null, null, null);
+            newFlight1.setFlightName(flightName);
+            newFlight1.setFlightDate(flightDate);
+            newFlight1.setDepartureTime(flightTime);
+            currentFlightSchedule.addFlight(newFlight1);
+            AlertBox.display("Added Flight", "Success! The flight has been added to your schedule.");
+        } catch (DateFormat e) {
+            AlertBox.display("Unsuccessful", "The date format is incorrect");
+        } catch (DepartureTimeFormat e2) {
+            AlertBox.display("Unsuccessful", "The departure time format is incorrect");
+        }
     }
 
     // MODIFIES: this
@@ -478,7 +491,7 @@ public class FlightAppGUI extends Application {
 
         //Flight Date Input
         flightDateInput = new TextField();
-        flightDateInput.setPromptText("mm/dd/yy");
+        flightDateInput.setPromptText("mm/dd/yyyy");
         flightDateInput.setMinWidth(100);
 
         //Flight Time Input
@@ -519,10 +532,15 @@ public class FlightAppGUI extends Application {
     // EFFECTS: implementation for the add button in the table, adds flight if all info is typed out
     // REFERENCE: https://youtu.be/uz2sWCnTq6E
     public void addFlightButtonClicked() {
+        formatChecker(flightDateInput.getText(), flightTimeInput.getText());
         if (flightNameInput.getText().equals("")
                 || flightDateInput.getText().equals("")
                 || flightTimeInput.getText().equals("")) {
             AlertBox.display("Error", "Flight entered is missing information.");
+        } else if (!correctDateFormat) {
+            AlertBox.display("Error", "Flight Date entered is the wrong format.");
+        } else if (!correctDepartureTimeFormat) {
+            AlertBox.display("Error", "Flight Time entered is the wrong format.");
         } else {
             Flight newFlight = new Flight(flightNameInput.getText(),
                     flightDateInput.getText(),
@@ -534,6 +552,20 @@ public class FlightAppGUI extends Application {
             flightDateInput.clear();
             flightTimeInput.clear();
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: checks whether the format for the date and departure time are correct
+    public void formatChecker(String s1, String s2) {
+        String regex1 = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
+        Pattern patternDate = Pattern.compile(regex1);
+        Matcher matcherDate = patternDate.matcher(s1);
+        correctDateFormat = matcherDate.matches();
+
+        String regex2 = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+        Pattern patternDepartureTime = Pattern.compile(regex2);
+        Matcher matcherDepartureTime = patternDepartureTime.matcher(s2);
+        correctDepartureTimeFormat = matcherDepartureTime.matches();
     }
 
     // MODIFIES: this

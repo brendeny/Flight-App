@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.DateFormat;
+import exceptions.DepartureTimeFormat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +15,9 @@ public class FlightTest {
 
     @BeforeEach
     public void setup() {
-        f1 = new Flight("AC100", "May 10, 2020", "22:00");
-        f2 = new Flight("CX250", "August 8, 2020","12:30");
-        f3 = new Flight("AA930", "June 18, 2020","13:00");
+        f1 = new Flight("AC100", "05/10/2020", "22:00");
+        f2 = new Flight("CX250", "08/08/2020","12:30");
+        f3 = new Flight("AA930", "06/18/2020","13:00");
         f4 = new Flight(null,null,null);
     }
 
@@ -28,9 +30,9 @@ public class FlightTest {
 
     @Test
     public void testGetFlightDate() {
-        assertEquals("May 10, 2020", f1.getFlightDate());
-        assertEquals("August 8, 2020", f2.getFlightDate());
-        assertEquals("June 18, 2020", f3.getFlightDate());
+        assertEquals("05/10/2020", f1.getFlightDate());
+        assertEquals("08/08/2020", f2.getFlightDate());
+        assertEquals("06/18/2020", f3.getFlightDate());
     }
 
     @Test
@@ -47,16 +49,44 @@ public class FlightTest {
     }
 
     @Test
-    public void testSetFlightDate() {
-        f4.setFlightDate("May 10, 2020");
-        assertEquals(f1.getFlightDate(), f4.getFlightDate());
+    public void testSetFlightDateCorrect() {
+        try {
+            f4.setFlightDate("05/10/2020");
+            assertEquals(f1.getFlightDate(), f4.getFlightDate());
+        } catch (DateFormat e) {
+            fail("Should not have thrown exception");
+        }
     }
 
     @Test
-    public void testSetDepartureTime() {
-        f4.setDepartureTime("22:00");
-        assertEquals(f1.getDepartureTime(), f4.getDepartureTime());
+    public void testSetFlightDateWrong() {
+        try {
+            f4.setFlightDate("wrong date");
+            fail("Should have thrown exception");
+            assertEquals(f1.getFlightDate(), f4.getFlightDate());
+        } catch (DateFormat e) {
+            // expected
+        }
     }
 
+    @Test
+    public void testSetDepartureTimeCorrect() {
+        try {
+            f4.setDepartureTime("22:00");
+            assertEquals(f1.getDepartureTime(), f4.getDepartureTime());
+        } catch (DepartureTimeFormat e) {
+            fail("Should not have thrown DepartureTimeFormat exception");
+        }
+    }
 
+    @Test
+    public void testSetDepartureTimeIncorrect() {
+        try {
+            f4.setDepartureTime("two thirty");
+            fail("Should have thrown DepartureTimeFormat exception");
+            assertEquals(f1.getDepartureTime(), f4.getDepartureTime());
+        } catch (DepartureTimeFormat e) {
+            // expected
+        }
+    }
 }
