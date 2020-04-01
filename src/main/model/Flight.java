@@ -3,14 +3,11 @@ package model;
 import exceptions.DateFormat;
 import exceptions.DepartureTimeFormat;
 import persistence.*;
-import model.*;
-import ui.AlertBox;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import java.io.PrintWriter;
-import java.util.LinkedList;
 
 //Represents a flight with a name, date, and departure time
 public class Flight implements Saveable {
@@ -21,7 +18,7 @@ public class Flight implements Saveable {
     private boolean departed;
 
     //MODIFIES: this
-    //EFFECTS: Flight has given name
+    //EFFECTS: Flight has given name, date, and departure time
     public Flight(String flightName, String flightDate, String departureTime) {
         this.flightName = flightName;
         this.flightDate = flightDate;

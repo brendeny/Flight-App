@@ -60,7 +60,35 @@ Phase 4: Task 2
 - The class which is robust is the "Flight" class with the following two methods: setDepartureTime() and setFlightDate()
 - These methods throw DateFormat Exception (checked) and DepartureTimeFormat Exception (checked) respectively
 - To test these robust methods, please see the "FlightTest" class with the following 4 tests that test where the 
-DateFormat exception is expected/not expected and where the DepartureTimeformat is expected/not expected: 
+DateFormat exception is expected/not expected and where the DepartureTimeFormat is expected/not expected: 
 testSetFlightDateCorrect(), testSetFlightDateWrong(), testSetDepartureTimeCorrect(), testSetDepartureTimeIncorrect()
 - You can also find an additional try/catch clause in the "FlightAppGUI" class under the ui package, the applicable
 method is named clickAddFlight()
+
+Phase 4: Task 3
+
+- My Flight App contained poor cohesion and a couple places where coupling could be improved. I originally had a master
+class for the GUI (FlightAppGUI) with contained all the methods related to the GUI. I have now improved the cohesion by
+splitting this master class into individual classes which are better suited to different parts of the GUI. The fixes I
+made to my app are listed below:
+- Fix 1: Created a separate class named "ShowFlightList". I moved the methods related to the Show Flight List pop out
+window into this new class from the "FlightAppGUI" class improving the cohesion of my app and classes. These methods 
+were the following: getFlight(), tableWindow(), addRemoveButtonHelper(), columnMakerHelper(), inputCreator(), 
+labelMakerHelper, flightTableSetupHelper(), inputTableHelper(), addFlightButtonClicked(), formatChecker(), 
+removeFlightButtonClicked()
+- Fix 2: Created a separate class named "AddNewFlight". I moved the methods related to the Add New Flight pop out
+window into this new class from the "FlightAppGUI" class improving the cohesion of my app and classes. These methods
+were the following: addWindow(), addButtonAction(), createInputBoxes(), clickAddFlight()
+- Fix 3: Created a separate class named "FirstFlightActions". I moved the methods related to showing/removing the first
+flight in a flight list into this new class from the "FlightAppGUI" class improving the cohesion of my app and classes.
+These methods were the following: doShowFirstFlight(), doRemoveFlight()
+- Fix 4: Created a separate class named "FlightListActions". I moved the methods related to working with the flight list
+(such as save/load, clearing the flight list, showing how many flights are on the flight list) into this new class
+from the "FlightAppGUI" class improving the cohesion of my app and classes. These methods were the following:
+doHowManyFlights(), clearList(), initializeFlightList(), saveFlights(), loadFlights()
+- Fix 5: I created a new field called "datePrompt" in the "FlightAppGUI" which controls the departure date text prompt
+for all the input boxes in the application. Thus, you only need to change the departure date text prompt in this single
+place now instead of trying to look through all the classes to identify where to change the prompt (specifically
+the AddNewFlight and ShowFlightList classes) which improves the coupling in the app and classes.
+- Fix 6: In the "AddNewFlight" class, I created the fields "maxHeightInputBox", and "maxMaxWidthInputBox" which helps
+create a single point of control for controlling the dimensions of input boxes

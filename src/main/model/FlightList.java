@@ -1,10 +1,5 @@
 package model;
 
-import persistence.*;
-import model.*;
-
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 
 //Represents a LinkedList of Flights that is a schedule of flights for users

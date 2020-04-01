@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import persistence.*;
@@ -19,7 +18,6 @@ public class FlightApp {
     private Scanner input;
     private Flight newFlight1;
     private FlightList currentFlightSchedule;
-    private FlightList tempFlightSchedule;
 
     //EFFECTS: runs the flight application
     public FlightApp() {
