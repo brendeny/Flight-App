@@ -57,12 +57,13 @@ pressing alt+L to use the mnemonic shortcut in the main menu
 Phase 4: Task 2
 
 - I have chosen the option "Test and design a class that is robust." for Task 2
-- The class which is robust is the "Flight" class with the following two methods: setDepartureTime() and setFlightDate()
+- The class which is robust is the "Flight" class in the model package with the following two methods: 
+setDepartureTime() and setFlightDate()
 - These methods throw DateFormat Exception (checked) and DepartureTimeFormat Exception (checked) respectively
-- To test these robust methods, please see the "FlightTest" class with the following 4 tests that test where the 
-DateFormat exception is expected/not expected and where the DepartureTimeFormat is expected/not expected: 
+- To test these robust methods, please see the "FlightTest" class in the test package with the following 4 tests that 
+test where the DateFormat exception is expected/not expected and where the DepartureTimeFormat is expected/not expected: 
 testSetFlightDateCorrect(), testSetFlightDateWrong(), testSetDepartureTimeCorrect(), testSetDepartureTimeIncorrect()
-- You can also find an additional try/catch clause in the "FlightAppGUI" class under the ui package, the applicable
+- You can also find an additional try/catch clause in the "AddNewFlight" class under the ui package, the applicable
 method is named clickAddFlight()
 
 Phase 4: Task 3
